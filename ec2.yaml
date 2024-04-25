@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  connection: local
+  connection: localhost
   become: false
   tasks:
   - name: Spot Request Creation with more options
