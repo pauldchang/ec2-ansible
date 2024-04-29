@@ -1,21 +1,40 @@
----
-- hosts: localhost
-  connection: local
-  become: false
+- name: Launch EC2 instance
+  hosts: localhost
+  gather_facts: False
   tasks:
-  - name: Spot Request Creation with more options
-    amazon.aws.ec2_spot_instance:
-      launch_specification:
-        image_id: ami-0900fe555666598a2
+    - name: Launch an EC2 Instance
+      ec2:
         key_name: SSH-MAC
-        instance_type: t2.medium
-        security_group_ids: sg-0884719d5ecbb2b29
-        block_device_mappings:
-          - device_name: /dev/sdb
-            ebs:
-              delete_on_termination: true
-              volume_type: gp3
-              volume_size: 5
+        instance_type: t2.micro
+        image: ami-0900fe555666598a2
+        region: us-east-2
+        count: 1
+      register: ec2
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_connection: local
+    ec2_url: https://ec2.us-east-2.amazonaws.com
+
+
+# ---
+# - hosts: localhost
+#   connection: local
+#   become: false
+#   tasks:
+#   - name: Spot Request Creation with more options
+#     amazon.aws.ec2_spot_instance:
+#       launch_specification:
+#         image_id: ami-0900fe555666598a2
+#         key_name: SSH-MAC
+#         instance_type: t2.medium
+#         security_group_ids: sg-0884719d5ecbb2b29
+#         block_device_mappings:
+#           - device_name: /dev/sdb
+#             ebs:
+#               delete_on_termination: true
+#               volume_type: gp3
+#               volume_size: 5
   # - name: Spot Request Termination
   #   amazon.aws.ec2_spot_instance:
   #       spot_instance_request_ids: ['sir-3xeyr2wn', 'sir-zhn6vjdq']
