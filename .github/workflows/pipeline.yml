@@ -46,4 +46,4 @@ jobs:
     - name: Run Ansible Playbook
       run: |
         chmod +x ./playbook.yml
-        ./playbook.ymp
+        ./playbook.yml
