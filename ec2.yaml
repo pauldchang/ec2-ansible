@@ -15,8 +15,6 @@
 #     ansible_python_interpreter: /usr/bin/python3
 #     ansible_connection: local
 #     ec2_url: https://ec2.us-east-2.amazonaws.com
-
-
 ---
 - hosts: localhost
   connection: local
