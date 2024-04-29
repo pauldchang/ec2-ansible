@@ -47,4 +47,3 @@ jobs:
       run: |
         chmod +x ./playbook.sh
         ./playbook.sh
-        
